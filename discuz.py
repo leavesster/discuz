@@ -51,7 +51,7 @@ class Discuz(object):
         self.hash_pattern = re.compile(r'<input type="hidden" name="formhash" value="(.+?)" />')
 
     def login(self):
-        with open('user.txt') as f:
+        with open('user.txt', encoding='utf8') as f:
             user = f.read()
         username = re.search(self.user_pattern, user).group(1)
         password = re.search(self.password_pattern, user).group(1)
