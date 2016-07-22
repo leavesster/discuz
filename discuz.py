@@ -170,8 +170,10 @@ class Discuz(object):
         html = self._get_response(publish_url, data=post_data)
         soup = BeautifulSoup(html.content, "html.parser")
         print(soup)
-        return soup.find(config.form_url)
-        # todo:threadqr=tid 此处可以查到tid
+        tie = soup.find(href=re.compile(config.form_url + '/thread-\d+-1-1.html'))
+        tid = re.search('thread-(\d+)-1-1.html', tie['href']).group(1)
+        print(tid)
+        return int(tid)  # 返回数字,保证可以发帖
 
     # 找出共多少页
     def find_page_number(self, url):
