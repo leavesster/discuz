@@ -60,6 +60,7 @@ class Discuz(object):
     def login_name(self, username=0, password=0):
         self.uid = username
         print(username, password)
+        username = str(username).encode('gbk')
         postdate = dict(username=username, password=password)
         self.operate = self._get_response(config.form_url + '/member.php?mod=logging&action=login&loginsubmit'
                                                             '=yes&infloat=yes&inajax=1', postdate)
